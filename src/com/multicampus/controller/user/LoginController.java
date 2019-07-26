@@ -5,18 +5,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
 
 import com.multicampus.biz.user.UserDAO;
 import com.multicampus.biz.user.UserVO;
-import com.multicampus.controller.Controller;
 
-public class LoginController {
+public class LoginController implements Controller {
 	public LoginController() {
 		System.out.println("===> LoginController 생성");
 	}
 
-	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("로그인 기능 처리");
 		
 		// 1. 사용자 입력정보(id, password) 추출
@@ -32,7 +31,7 @@ public class LoginController {
 		UserVO user = userDAO.getUser(vo);
 		 
 		// 3. 화면 네비게이션
-		ModelAndView mav = ModelAndView();
+		ModelAndView mav = new ModelAndView();
 		
 		if(user != null) {
 			// 로그인 성공했을 때 세션에 상태정보를 저장한다. 

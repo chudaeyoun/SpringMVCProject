@@ -3,14 +3,15 @@ package com.multicampus.controller.board;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
 import com.multicampus.biz.board.BoardDAO;
 import com.multicampus.biz.board.BoardVO;
-import com.multicampus.controller.Controller;
 
 public class InsertBoardController implements Controller {
 
-	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("글 등록 기능 처리");
 		
 		// 1. 사용자 입력정보(title, writer, content) 추출
@@ -27,8 +28,11 @@ public class InsertBoardController implements Controller {
 		BoardDAO boardDAO = new BoardDAO();
 		boardDAO.insertBoard(vo);
 		
+		
 		// 3. 화면 네비게이션
-		return "getBoardList.do";
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("getBoardList.do");
+		return mav;
 		
 	}
 

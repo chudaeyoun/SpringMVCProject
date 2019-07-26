@@ -5,12 +5,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
-
-import com.multicampus.controller.Controller;
+import org.springframework.web.servlet.mvc.Controller;
 
 public class LogoutController implements Controller {
 
-	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("로그아웃 기능 처리");
 		
@@ -19,7 +17,7 @@ public class LogoutController implements Controller {
 		session.invalidate();
 
 		// 메인 화면으로 이동한다.
-		ModelAndView mav = ModelAndView();
+		ModelAndView mav = new ModelAndView();
 		mav.setViewName("login.html");
 		return mav;
 		
