@@ -20,10 +20,11 @@ public class LoginController {
 			return "getBoardList.do";
 		} else return "login.html";		
 	}
-
+	
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "login.html";		
+		return"login.html";	
 	}
+
 }

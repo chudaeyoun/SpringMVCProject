@@ -11,9 +11,9 @@ import org.springframework.stereotype.Repository;
 
 import com.multicampus.biz.common.JDBCUtil;
 
-// DAO(Data Access Object) 클래스 
+// DAO(Data Access Object) 클래스
 @Repository
-public class BoardDAO {
+public class BoardDAOHibernate {
 	// JDBC 관련 변수
 	private Connection conn;
 	private PreparedStatement stmt;
@@ -29,14 +29,14 @@ public class BoardDAO {
 	private final String BOARD_LIST_T = "select * from board where title like '%'||?||'%' order by seq desc";
 	private final String BOARD_LIST_C = "select * from board where content like '%'||?||'%' order by seq desc";
 	
-	public BoardDAO() {
-		System.out.println("===> BoardDAO 생성");
+	public BoardDAOHibernate() {
+		System.out.println("===> BoardDAOHibernate 생성");
 	}
 	
 	// BOARD 테이블과 관련된 CRUD 메소드
 	// 글 등록
 	public void insertBoard(BoardVO vo) {
-		System.out.println("===> JDBC 기반으로 insertBoard() 기능 처리");
+		System.out.println("===> Hibernate 기반으로 insertBoard() 기능 처리");
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_INSERT);
@@ -53,7 +53,7 @@ public class BoardDAO {
 	
 	// 글 수정
 	public void updateBoard(BoardVO vo) {
-		System.out.println("===> JDBC 기반으로 updateBoard() 기능 처리");
+		System.out.println("===> Hibernate 기반으로 updateBoard() 기능 처리");
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_UPDATE);
@@ -70,7 +70,7 @@ public class BoardDAO {
 	
 	// 글 삭제
 	public void deleteBoard(BoardVO vo) {
-		System.out.println("===> JDBC 기반으로 deleteBoard() 기능 처리");
+		System.out.println("===> Hibernate 기반으로 deleteBoard() 기능 처리");
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_DELETE);
@@ -86,7 +86,7 @@ public class BoardDAO {
 	// 글 상세 조회
 	public BoardVO getBoard(BoardVO vo) {
 		BoardVO board = null;
-		System.out.println("===> JDBC 기반으로 getBoard() 기능 처리");
+		System.out.println("===> Hibernate 기반으로 getBoard() 기능 처리");
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_GET);
@@ -115,7 +115,7 @@ public class BoardDAO {
 	
 	// 글 목록 검색
 	public List<BoardVO> getBoardList(BoardVO vo) {
-		System.out.println("===> JDBC 기반으로 getBoardList() 기능 처리");
+		System.out.println("===> Hibernate 기반으로 getBoardList() 기능 처리");
 		List<BoardVO> boardList = new ArrayList<BoardVO>();
 		try {
 			conn = JDBCUtil.getConnection();
