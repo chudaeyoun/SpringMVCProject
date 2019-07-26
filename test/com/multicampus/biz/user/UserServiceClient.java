@@ -6,7 +6,7 @@ public class UserServiceClient {
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext container = 
 			new ClassPathXmlApplicationContext("business-layer.xml");
-		
+
 		UserService userService = (UserService) container.getBean("userService");
 		
 		UserVO vo = new UserVO();
